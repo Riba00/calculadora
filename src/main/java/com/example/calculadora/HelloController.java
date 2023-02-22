@@ -1,93 +1,138 @@
 package com.example.calculadora;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.util.Arrays;
+
 public class HelloController {
     @FXML
-    private Label operacioText;
+    private Label resultatLabel;
     @FXML
-
-    private double resultat;
-    private double numero1;
-    private double numero2;
-
+    private Label entradaUsuariLabel;
 
     @FXML
-    protected void on1BottonClick(){
-        operacioText.setText(operacioText.getText()+"1");
+    protected void on1BottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "1");
     }
+
     @FXML
-    protected void on2BottonClick(){
-        operacioText.setText(operacioText.getText()+"2");
+    protected void on2BottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "2");
     }
+
     @FXML
-    protected void on3BottonClick(){
-        operacioText.setText(operacioText.getText()+"3");
+    protected void on3BottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "3");
     }
+
     @FXML
-    protected void on4BottonClick(){
-        operacioText.setText(operacioText.getText()+"4");
+    protected void on4BottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "4");
     }
+
     @FXML
-    protected void on5BottonClick(){
-        operacioText.setText(operacioText.getText()+"5");
+    protected void on5BottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "5");
     }
+
     @FXML
-    protected void on6BottonClick(){
-        operacioText.setText(operacioText.getText()+"6");
+    protected void on6BottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "6");
     }
+
     @FXML
-    protected void on7BottonClick(){
-        operacioText.setText(operacioText.getText()+"7");
+    protected void on7BottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "7");
     }
+
     @FXML
-    protected void on8BottonClick(){
-        operacioText.setText(operacioText.getText()+"8");
+    protected void on8BottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "8");
     }
+
     @FXML
-    protected void on9BottonClick(){
-        operacioText.setText(operacioText.getText()+"9");
+    protected void on9BottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "9");
     }
+
     @FXML
-    protected void onEqualsBottonClick(){
-        operacioText.setText(String.valueOf(resultat));
-    }
-    @FXML
-    protected void onSumaBottonClick(){
-        try{
-            if (operacioText.getText().charAt(operacioText.getText().length()-1) !='+' || operacioText.getText().charAt(operacioText.getText().length()-1) !='-' || operacioText.getText().charAt(operacioText.getText().length()-1) !='*' || operacioText.getText().charAt(operacioText.getText().length()-1) !='/' || operacioText.getText().charAt(operacioText.getText().length()-1) !='.'){
-                numero1 = Double.parseDouble(operacioText.getText());
-                operacioText.setText(operacioText.getText()+" + ");
+    protected void onEqualsBottonClick() {
+        try {
+            String[] elementsSeparats;
+            String operacio = entradaUsuariLabel.getText();
+            elementsSeparats = operacio.split(" ");
+
+            double resultat = 0;
+            double num1 = Double.parseDouble(elementsSeparats[0]);
+            if (elementsSeparats.length == 1) {
+                resultat = num1;
+            }else {
+                double num2 = Double.parseDouble(elementsSeparats[2]);
+
+                switch (elementsSeparats[1]) {
+                    case "+" -> resultat = num1 + num2;
+                    case "-" -> resultat = num1 - num2;
+                    case "*" -> resultat = num1 * num2;
+                    case "/" -> resultat = num1 / num2;
+                }
             }
+
+            resultatLabel.setText(String.valueOf(resultat));
         }catch (Exception e){
+            resultatLabel.setText("Syntax Error");
+        }
+    }
+
+    @FXML
+    protected void onSumaBottonClick() {
+        try {
+            entradaUsuariLabel.setText(entradaUsuariLabel.getText() + " + ");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
-    protected void onRestaBottonClick(){
-        operacioText.setText(operacioText.getText()+"-");
+    protected void onRestaBottonClick() {
+        try {
+            entradaUsuariLabel.setText(entradaUsuariLabel.getText() + " - ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     @FXML
-    protected void onMultiplicarBottonClick(){
-        operacioText.setText(operacioText.getText()+"*");
+    protected void onMultiplicarBottonClick() {
+        try {
+            entradaUsuariLabel.setText(entradaUsuariLabel.getText() + " * ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     @FXML
-    protected void onDividirBottonClick(){
-        operacioText.setText(operacioText.getText()+"/");
+    protected void onDividirBottonClick() {
+        try {
+            entradaUsuariLabel.setText(entradaUsuariLabel.getText() + " / ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     @FXML
-    protected void onComaBottonClick(){
-        operacioText.setText(operacioText.getText()+".");
+    protected void onComaBottonClick() {
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + ".");
     }
+
     @FXML
     protected void on0BottonClick() {
-        operacioText.setText(operacioText.getText()+"0");
+        entradaUsuariLabel.setText(entradaUsuariLabel.getText() + "0");
     }
+
     @FXML
     protected void onCBottonClick() {
-        operacioText.setText("");
-        resultat = 0;
+        entradaUsuariLabel.setText("");
+        resultatLabel.setText("");
     }
 }

@@ -14,8 +14,12 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-        stage.setTitle("Hello!");
+        stage.setTitle("CalculdaoraRiba");
         stage.setScene(scene);
+        stage.setHeight(254);
+        stage.setWidth(325);
+//        stage.setHeight(490);
+//        stage.setWidth(650);
         stage.show();
     }
 
